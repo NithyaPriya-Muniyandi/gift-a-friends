@@ -1,0 +1,367 @@
+---
+import { Image } from "astro:assets";
+import arrow from '../assets/buttonarrow.webp';
+import logo from '../assets/logo.webp';
+
+---
+
+<section class="thank-you-banner bg-cover bg-center flex items-center justify-center text-center px-6 py-30 md:py-20">
+  <div class="max-w-8xl mx-auto md:px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Logo -->
+      <div>
+        <img src={logo.src} alt="Logo" class="w-[160px] mt-8 md:-mt-8" />
+      </div>
+
+      <!-- Content -->
+      <div class="text-left md:items-center md:justify-center flex flex-col">
+        <h1 class="text-3xl w-[60%] md:w-full md:text-6xl font-bold mb-6 uppercase text-shadow-lg gap-3">
+          <span class="text-outline-black">Gift a Friend &</span>
+          <span class="text-outline-black-yellow"> Get Rewarded!</span>
+        </h1>
+        <h2 class="text-2xl w-[80%] md:w-full md:text-4xl text-blue-fill-yellow-stroke font-extrabold text-shadow-lg mb-6 uppercase">
+          Refer 5 Friends & Get a CPD Course FREE
+        </h2>
+        <p class="bg-white rounded-lg md:p-4 text-gray-800 max-w-xl">
+          We believe good education should be shared and rewarded! With our <strong>“Gift a Friend” referral campaign,</strong> you can help your friends grow while earning a FREE CPD course for yourself.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <div>
+        <div class="bg-gradient-to-b from-yellow-100 to-blue-100 p-6 max-w-md border border-blue-500 shadow-[6px_6px_0px_#333333]">
+          <form id="referralForm" action="https://apply.tauedu.org/lp/send_data_gift.php" method="post" class="space-y-4">
+            <div id="initialDetails" class="space-y-4">
+              <h3 class="text-lg md:text-2xl font-semibold mb-4 text-left text-[#2F2E67]">FILL YOUR INFORMATION</h3>
+
+              <div class="flex flex-col md:flex-row gap-4">
+                <input type="text" id="name" name="name" placeholder="Your Name*" required class="w-full border border-gray-400 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="email" id="email" name="email" placeholder="Your Email*" required class="w-full border border-gray-400 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </div>
+
+              <div class="flex flex-col md:flex-row gap-4">
+           <select id="country_code" name="country_code" required class="w-full border border-gray-400 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+  <option value="" selected disabled>Select Country*</option>
+</select>
+
+                <input type="tel" id="contact" name="contact" placeholder="Enter Contact*" inputmode="numeric" required pattern="[0-9]{7,15}" inputmode="numeric" title="Enter a valid phone number with 7 to 15 digits" class="w-full border border-gray-400 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </div>
+
+              <input type="text" id="application_number" name="application_number" placeholder="Enter Your Application Number" class="w-full border border-gray-400 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+              <div class="flex flex-col flex-wrap md:flex-row text-left md:justify-between mb-4">
+                <button type="button" id="toggleReferralBtn" class="mb-4 md:mb-0 bg-gradient-to-b from-[#2F2E67] to-[#46448F] text-white font-semibold px-5 py-3 border border-white shadow-lg flex items-center transition-transform hover:scale-105">
+                  Enter Referral Information
+                </button>
+              </div>
+            </div>
+
+            <div class="mt-6 transition-all duration-500 ease-in-out">
+              <div class="flex flex-col flex-wrap md:flex-row text-left md:justify-between mb-4">
+                <h3 class="text-lg md:text-2xl font-semibold text-[#2F2E67]">
+                  Unlock Rewards Together<br class="hidden md:block" />Reach Out And Refer!
+                </h3>
+                <p id="submissionCounter" class="hidden text-2xl text-white font-medium mt-6 md:mt-0 md:ml-4 bg-green-700 rounded-full px-6 py-2 text-center shadow-sm flex items-center justify-center"></p>
+              </div>
+
+              <div id="formFields" class="space-y-4">
+                <div class="flex flex-col md:flex-row gap-4">
+                  <input type="text" id="referral_name" name="referral_name" placeholder="Referral Name*" required class="w-full md:w-1/2 border bg-white border-gray-400 p-2 focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <select id="referral_country_code" name="referral_country_code" required class="w-full md:w-1/2 border bg-white border-gray-400 p-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                    <option value="" disabled selected>Select country*</option>
+                     </select>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-4">
+                  <input type="tel" id="referral_mobile" name="referral_mobile" inputmode="numeric" placeholder="Referral Contact*" required pattern="[0-9]{7,15}" inputmode="numeric" title="Enter a valid phone number with 7 to 15 digits" class="w-full md:w-1/2 border bg-white border-gray-400 p-2 focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <input type="email" id="referral_email" name="referral_email" placeholder="Referral Email*" required class="w-full md:w-1/2 border bg-white border-gray-400 p-2 focus:outline-none focus:ring-2 focus:ring-primary" />
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-4">
+                  <select id="category" name="category" required onchange="updateCourses()" class="w-full md:w-1/2 border bg-white border-gray-400 p-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                    <option selected disabled value="">Select Program Category*</option>
+                    <option value="Guyana DBLP">Guyana DBLP</option>
+                    <option value="Zambia DBLP">Zambia DBLP</option>
+                    <option value="Zambia">Zambia Medicine</option>
+                    <option value="Guyana">Guyana Medicine</option>
+                    <option value="TAU-UCN-PG">PG Medicine</option>
+                  </select>
+
+                  <select id="course" required name="program" class="w-full md:w-1/2 border bg-white border-gray-400 p-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                    <option value="">Select Program Course</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Hidden Inputs -->
+              <input type="hidden" id="currentUrl" name="url" value="" />
+              <input type="hidden" name="referal_code" value="TAU-RA">
+              <input type="hidden" name="last_record" value="">
+              <input type="hidden" name="no_captcha" value="yes">
+              <input type="hidden" name="applicant_name" value="Test">
+              <input type="hidden" name="thank_you_page_link" value="https://apply.tauedu.org/gy/thank-you/gift-a-friends/">
+              <input type="hidden" name="applicant_email_address" value="priya.prabu@tauedu.org">
+              <input type="hidden" name="ProspectID" value="">
+              <input type="hidden" name="page" value="landng_pages_form_submit_send_data_api">
+              <input type="hidden" name="option" value="landng_pages_data_store_leadsquared_student_ambassador">
+              <input type="hidden" name="send_mail_applicant" value="yes">
+              <input type="hidden" name="send_mail_ea_head" value="yes">
+              <input type="hidden" name="store_leadsquared_lead" value="yes">
+              <input type="hidden" name="send_sms_applicant" value="yes">
+              <input type="hidden" name="utm_module" value="Enquiry form">
+            <input type="hidden" name="campaign_name_custom" value="" />
+<input type="hidden" name="lead_source" value="" />
+<input type="hidden" name="netcore_activity_source" value="" />
+<input type="hidden" name="utm_term" value="" />
+              <input type="hidden" name="utm_source" value="Referrals - RA">
+              <input type="hidden" name="send_whatsapp_applicant" value="yes">
+              <input type="hidden" name="flag" value="1">
+              <input type="hidden" name="lead_id" value="1">
+              <input type="hidden" name="form_name" value="gift_for_friends">
+              <input type="hidden" name="brochure_location" value="https://apply.tauedu.org/gy/thank-you/gift-a-friends/">
+
+              <!-- Submit Button -->
+              <div id="submitButton" class="col-xs-12">
+                <button type="submit" class="bg-gradient-to-b from-[#2F2E67] to-[#46448F] text-white font-semibold px-5 py-3 mt-3 border border-white shadow-lg flex items-center transition-transform hover:scale-105">
+                  Submit
+                  <Image src={arrow} alt="Arrow" class="ml-2" />
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script is:client>
+
+ window.addEventListener("DOMContentLoaded", () => {
+  // Set full current URL
+  const currentUrlInput = document.getElementById("currentUrl");
+  if (currentUrlInput) {
+    currentUrlInput.value = window.location.href;
+  }
+
+  // Parse UTM and other query parameters
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const campaignNameCustom = urlParams.get("campaign_name_custom") || "";
+  const netcore = urlParams.get("netcore_activity_source") || "";
+  const leadSource = urlParams.get("lead_source") || "";
+  const utmTerm = urlParams.get("utm_term") || "";
+
+  // Set values in matching hidden inputs
+  const setInputValue = (name, value) => {
+    const input = document.querySelector(`input[name="${name}"]`);
+    if (input) input.value = value;
+  };
+
+  setInputValue("campaign_name_custom", campaignNameCustom);
+  setInputValue("netcore_activity_source", netcore);
+  setInputValue("lead_source", leadSource);
+  setInputValue("utm_term", utmTerm);
+});
+
+  // ----------------------------------------
+  // 🎓 Dynamic Course Dropdown
+  // ----------------------------------------
+  function updateCourses() {
+    const category = document.getElementById('category').value;
+    const courseSelect = document.getElementById('course');
+    const courseOptions = {
+      "Guyana DBLP": [
+        "Doctor of Public Health Administration",
+        "Doctor of Business Administration",
+        "Master of Public Health",
+        "PhD in Management",
+        "PhD in Nursing",
+        "PhD in Public Health"
+      ],
+      "Zambia DBLP": [
+        "Bachelor of Public Health",
+        "Master of Public Health",
+        "PhD in Public Health",
+        "Master of Business Administration",
+        "Master of Science in Project Management",
+        "PhD in Management"
+      ],
+      "Zambia Medicine": [
+        "Bachelor of Medicine and Bachelor of Surgery",
+        "Health Profession and Foundation Programme"
+      ],
+      "Guyana Medicine": ["Doctor of Medicine"],
+      "PG Medicine": [
+        "MRCP Clinical Premier Training",
+        "MRCS Clinical Premier Training",
+        "FRCR Clinical Premier Training",
+        "MRCOG Clinical Premier Training",
+        "MRCPCH Clinical Premier Training",
+        "Fellowship in Clinical Cardiology with Critical Care"
+      ]
+    };
+
+    courseSelect.innerHTML = '<option value="" selected disabled>Select Program Course</option>';
+    if (category && courseOptions[category]) {
+      courseOptions[category].forEach(course => {
+        const option = document.createElement('option');
+        option.value = course;
+        option.textContent = course;
+        courseSelect.appendChild(option);
+      });
+    }
+  }
+
+  // ----------------------------------------
+  // 📩 Referral Form Submission Tracker
+  // ----------------------------------------
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  const mainFormSection = document.getElementById("initialDetails");
+  const referralForm = document.getElementById("referralForm");
+  const counterDisplay = document.getElementById("submissionCounter");
+
+  const referralEmailInput = document.getElementById("referral_email");
+  const referralPhoneInput = document.getElementById("referral_mobile");
+
+  const mainEmailInput = document.getElementById("email");
+  const mainPhoneInput = document.getElementById("contact");
+
+  const formSubmittedKey = "form_submitted_once";
+  const submissionStorageKey = "userReferralSubmissions";
+  const mainFields = ["name", "email", "country_code", "contact", "application_number"];
+
+  // -------------------------
+  // 🔒 LOCK MAIN FIELDS IF SUBMITTED
+  // -------------------------
+  if (localStorage.getItem(formSubmittedKey) === "true") {
+    mainFields.forEach((id) => {
+      const input = document.getElementById(id);
+      if (input) {
+        input.value = localStorage.getItem(`form_${id}`) || "";
+        input.readOnly = true;
+        if (input.tagName === "SELECT") input.disabled = true;
+      }
+    });
+  } else {
+    // Save input data on change
+    mainFields.forEach((id) => {
+      const input = document.getElementById(id);
+      if (!input) return;
+      const stored = localStorage.getItem(`form_${id}`);
+      if (stored) input.value = stored;
+
+      const eventType = input.tagName === "SELECT" ? "change" : "input";
+      input.addEventListener(eventType, () => {
+        localStorage.setItem(`form_${id}`, input.value);
+      });
+    });
+
+    // Lock main fields on first form submit
+    const mainForm = document.getElementById("initialDetails");
+    if (mainForm) {
+      mainForm.addEventListener("submit", () => {
+        localStorage.setItem(formSubmittedKey, "true");
+        mainFields.forEach((id) => {
+          const input = document.getElementById(id);
+          if (input) {
+            input.readOnly = true;
+            if (input.tagName === "SELECT") input.disabled = true;
+          }
+        });
+      });
+    }
+  }
+
+  // -------------------------
+  // 📦 REFERRAL DATA HANDLERS
+  // -------------------------
+  function getSubmissions() {
+    const stored = localStorage.getItem(submissionStorageKey);
+    return stored ? JSON.parse(stored) : [];
+  }
+
+  function setSubmissions(data) {
+    localStorage.setItem(submissionStorageKey, JSON.stringify(data));
+  }
+
+  function updateCounterUI(count) {
+    if (counterDisplay) {
+      counterDisplay.classList.remove("hidden");
+      counterDisplay.textContent = `${count}`;
+    }
+  }
+
+  updateCounterUI(getSubmissions().length);
+
+  // -------------------------
+  // 🧾 SUBMIT REFERRAL DATA
+  // -------------------------
+  if (referralForm) {
+    referralForm.addEventListener("submit", (e) => {
+      const referralEmail = referralEmailInput?.value?.trim().toLowerCase();
+      const referralPhone = referralPhoneInput?.value?.trim();
+      const mainEmail = mainEmailInput?.value?.trim().toLowerCase();
+      const mainPhone = mainPhoneInput?.value?.trim();
+
+      const existing = getSubmissions();
+
+      const isEmailUsed = existing.some(entry => entry.email === referralEmail);
+      const isPhoneUsed = existing.some(entry => entry.phone === referralPhone);
+      const isSameAsMain = referralEmail === mainEmail || referralPhone === mainPhone;
+
+      if (isEmailUsed || isPhoneUsed) {
+        e.preventDefault();
+        alert("❌ This referral email or phone number has already been used.");
+        return;
+      }
+
+      if (isSameAsMain) {
+        e.preventDefault();
+        alert("❌ Referral email or phone number cannot match your own.");
+        return;
+      }
+
+      // Save referral to localStorage
+      existing.push({ email: referralEmail, phone: referralPhone });
+      setSubmissions(existing);
+      updateCounterUI(existing.length);
+
+      if (existing.length === 5) {
+        alert("✅ You've submitted 5 referrals. You can continue to refer more!");
+      }
+    });
+  }
+});
+
+
+</script>
+<!-- countries -->
+<script>
+  const countries = [
+    "Afghanistan (+93)", "Albania (+355)", "Algeria (+213)", "American Samoa (+1-684)", "Andorra (+376)", "Angola (+244)", "Anguilla (+1-264)", "Antarctica (+672)", "Antigua and Barbuda (+1-268)", "Argentina (+54)", "Armenia (+374)", "Aruba (+297)", "Australia (+61)", "Austria (+43)", "Azerbaijan (+994)", "Bahamas (+1-242)", "Bahrain (+973)", "Bangladesh (+880)", "Barbados (+1-246)", "Belarus (+375)", "Belgium (+32)", "Belize (+501)", "Benin (+229)", "Bermuda (+1-441)", "Bhutan (+975)", "Bolivia (+591)", "Bosnia and Herzegovina (+387)", "Botswana (+267)", "Brazil (+55)", "British Indian Ocean Territory (+246)",
+    "Bulgaria (+359)", "Burkina Faso (+226)", "Burundi (+257)", "Cambodia (+855)", "Cameroon (+237)", "Canada (+1)", "Cape Verde (+238)", "Cayman Islands (+1-345)", "Central African Republic (+236)", "Chad (+235)", "Chile (+56)", "China (+86)", "Christmas Island (+61)", "Colombia (+57)", "Comoros (+269)", "Cook Islands (+682)", "Costa Rica (+506)", "Croatia (+385)", "Cuba (+53)", "Cyprus (+357)", "Czech Republic (+420)", "Denmark (+45)", "Djibouti (+253)", "Dominica (+1-767)", "Dominican Republic (+1-809)", "Democratic Republic of the Congo (+243)", "East Timor (+670)", "Ecuador (+593)", "Egypt (+20)", "El Salvador (+503)",
+    "Equatorial Guinea (+240)", "Eritrea (+291)", "Estonia (+372)", "Ethiopia (+251)", "Faroe Islands (+298)", "Fiji (+679)", "Finland (+358)", "France (+33)", "French Polynesia (+689)", "Gabon (+241)", "Gambia (+220)", "Georgia (+995)", "Germany (+49)", "Ghana (+233)", "Gibraltar (+350)", "Greece (+30)", "Greenland (+299)", "Grenada (+1-473)", "Guam (+1-671)", "Guatemala (+502)", "Guernsey (+44-1481)", "Guinea (+224)", "Guinea-Bissau (+245)", "Guyana (+592)", "Haiti (+509)", "Honduras (+504)", "Hong Kong (+852)", "Hungary (+36)", "Iceland (+354)", "India (+91)",
+    "Indonesia (+62)", "Iraq (+964)", "Ireland (+353)", "Isle of Man (+44-1624)", "Israel (+972)", "Italy (+39)", "Ivory Coast (+225)", "Jamaica (+1-876)", "Japan (+81)", "Jersey (+44-1534)", "Jordan (+962)", "Kazakhstan (+7)", "Kenya (+254)", "Kiribati (+686)", "Kosovo (+383)", "Kuwait (+965)", "Kyrgyzstan (+996)", "Latvia (+371)", "Lebanon (+961)", "Lesotho (+266)", "Liberia (+231)", "Libya (+218)", "Liechtenstein (+423)", "Lithuania (+370)", "Luxembourg (+352)", "Madagascar (+261)", "Malawi (+265)", "Malaysia (+60)", "Maldives (+960)", "Mali (+223)",
+    "Malta (+356)", "Marshall Islands (+692)", "Mauritania (+222)", "Mauritius (+230)", "Mayotte (+262)", "Mexico (+52)", "Monaco (+377)", "Mongolia (+976)", "Montenegro (+382)", "Montserrat (+1-664)", "Morocco (+212)", "Mozambique (+258)", "Namibia (+264)", "Nauru (+674)", "Nepal (+977)", "Netherlands (+31)", "New Caledonia (+687)", "New Zealand (+64)", "Nicaragua (+505)", "Niger (+227)", "Nigeria (+234)", "Niue (+683)", "Norway (+47)", "Oman (+968)", "Pakistan (+92)", "Palau (+680)", "Panama (+507)", "Papua New Guinea (+675)", "Paraguay (+595)", "Peru (+51)",
+    "Philippines (+63)", "Poland (+48)", "Portugal (+351)", "Qatar (+974)", "Romania (+40)", "Russia (+7)", "Rwanda (+250)", "Saudi Arabia (+966)", "Senegal (+221)", "Serbia (+381)", "Seychelles (+248)", "Sierra Leone (+232)", "Singapore (+65)", "Slovakia (+421)", "Slovenia (+386)", "South Africa (+27)", "South Korea (+82)", "Spain (+34)", "Sri Lanka (+94)", "Sudan (+249)", "Sweden (+46)", "Switzerland (+41)", "Syria (+963)", "Taiwan (+886)", "Tajikistan (+992)", "Tanzania (+255)", "Thailand (+66)", "Togo (+228)", "Tonga (+676)", "Trinidad and Tobago (+1-868)",
+    "Tunisia (+216)", "Turkey (+90)", "Turkmenistan (+993)", "Uganda (+256)", "Ukraine (+380)", "United Arab Emirates (+971)", "United Kingdom (+44)", "United States (+1)", "Uruguay (+598)", "Uzbekistan (+998)", "Vanuatu (+678)", "Venezuela (+58)", "Vietnam (+84)", "Yemen (+967)", "Zambia (+260)", "Zimbabwe (+263)"
+  ];
+
+const countrySelect1 = document.getElementById("country_code");
+const countrySelect2 = document.getElementById("referral_country_code");
+
+[countrySelect1, countrySelect2].forEach(select => {
+  if (!select) return; // Skip if element doesn't exist
+  countries.forEach(country => {
+    const option = document.createElement("option");
+    option.value = country;
+    option.textContent = country;
+    select.appendChild(option.cloneNode(true)); // Clone so both get independent copies
+  });
+});
+
+</script>
+
+

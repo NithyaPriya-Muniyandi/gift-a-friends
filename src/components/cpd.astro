@@ -1,0 +1,65 @@
+---
+import cpdGirl from '../assets/cpdgirl.webp';
+import { Image } from 'astro:assets';
+import uparrow from '../assets/uparrow.webp';
+---
+
+<section class="bg-white">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+    
+    <!-- Left Image (No Padding) -->
+   <div class="md:col-span-4 hidden md:flex justify-center md:justify-end md:items-end md:-m-10">
+  <img src={cpdGirl.src} alt="CPD Girl" class="w-full" />
+</div>
+
+
+    <!-- Center Card (With Padding) -->
+    <div class="md:col-span-3 md:relative px-4">
+      <div class="md:absolute md:left-[-40%] bg-white rounded-xl p-4 shadow-lg w-full md:w-[110%]">
+        <p class="text-xl font-bold uppercase text-[#2F2E67]">Ready to gift a friend?</p>
+        <p class="text-xs text-gray-600 mb-4">Take the first step now.</p>
+       <a href="#referralForm" class="block w-full">
+  <button class="w-full bg-[#2F2E67] text-white text-sm py-4 px-4 rounded-md font-medium mb-2">
+    Submit Your Referral Now
+  </button>
+</a>
+        <button class="w-full border border-[#2F2E67] text-[#2F2E67] text-sm py-3 px-4 rounded-md font-medium">
+          Explore CPD Course Options
+        </button>
+      </div>
+    </div>
+
+    <div class="md:col-span-5 px-4">
+      <h2 class="text-xl md:text-3xl font-extrabold text-[#2F2E67] uppercase mb-4">What are CPD Courses?</h2>
+      <ul class="text-gray-800 space-y-3 mb-6">
+        <li class="flex items-start gap-3">
+          <Image src={uparrow} alt="arrow" />
+          <span>Enhance your career prospects</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <Image src={uparrow} alt="arrow" />
+          <span>Keep you updated with the latest industry practices</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <Image src={uparrow} alt="arrow" />
+          <span>Add credibility to your resume</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <Image src={uparrow} alt="arrow" />
+          <span>Learn conveniently online at your own pace</span>
+        </li>
+      </ul>
+
+      <p class="mb-2">With TAU's CPD courses, you can choose from in-demand domains like:</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm font-semibold mb-16">
+        <span class="bg-yellow-200 text-center px-3 py-2 rounded-md">Public Health</span>
+        <span class="bg-yellow-200 text-center px-3 py-2 rounded-md">Healthcare Quality</span>
+        <span class="bg-yellow-200 text-center px-3 py-2 rounded-md">Project Management</span>
+        <span class="bg-yellow-200 text-center px-3 py-2 rounded-md">Digital Marketing</span>
+        <span class="bg-yellow-200 text-center px-3 py-2 rounded-md">Leadership & Administration</span>
+        <span class="bg-yellow-200 text-center px-3 py-2 rounded-md">Research & Statistics</span>
+      </div>
+    </div>
+  </div>
+</section>
