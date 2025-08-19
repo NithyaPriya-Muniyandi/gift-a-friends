@@ -1,0 +1,40 @@
+---
+import AboutImage from './../assets/about.webp';
+---
+
+<section id="program" class="bg-[#F5F5F5] px-4 md:px-20 py-8 md:py-16">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+    
+    <!-- Program Overview -->
+    <div>
+      <h2 class="text-center md:text-left text-2xl md:text-3xl font-bold mb-4 text-[#121212]">Program Overview</h2>
+      <p class="text-gray-700 leading-relaxed">
+        Master’s in Public Health is a prestigious credential that propels you into leadership roles across government, non-profit, and private sectors. Acquire essential administrative, ethical, and professional skills to design and implement impactful health education programs. Join us to make a meaningful contribution to public health while advancing your career. Seize your future with a globally recognized qualification.
+      </p>
+    </div>
+
+    <!-- Center image with duration badge -->
+    <div class="relative flex justify-center items-center">
+      <!-- Circular image -->
+    
+        <img src={AboutImage.src} alt="Program Image" class="h-[280px] w-[280px]" />
+      
+      <!-- Duration Circle -->
+      <div class="absolute -right-4 bg-[#114869] text-white w-[150px] h-[150px] border-1 rounded-full flex flex-col justify-center items-center border-white shadow-lg">
+        <span class="text-sm">Duration</span>
+        <span class="text-lg font-semibold">2 Years</span>
+      </div>
+    </div>
+
+    <!-- Eligibility -->
+    <div>
+      <div class="inline-block bg-[#FFE44D] text-[#114869] text-lg font-semibold px-4 py-2 rounded-xl mb-4">Eligibility</div>
+      <div class="bg-white border border-[#E3E1E1] p-4 rounded-lg mb-4 text-gray-800 leading-relaxed text-sm">
+        Bachelor’s Degree in Public Health / Health Sciences / Paramedical Science / Life Science / Social Work from a recognized university.
+      </div>
+      <div class="bg-white border border-[#E3E1E1] p-4 rounded-lg text-gray-800 leading-relaxed text-sm">
+        Qualification from any recognized body with a level equivalent to a bachelor’s qualification + at least 2 years of work experience in the health sector.
+      </div>
+    </div>
+  </div>
+</section>

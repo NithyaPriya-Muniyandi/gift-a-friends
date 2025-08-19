@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .offers-bg {
+    background: linear-gradient(
+      270deg,
+      rgba(225, 241, 254, 0) 0%,
+      rgba(225, 241, 254, 1) 32%,
+      rgba(225, 241, 254, 1) 50%,
+      rgba(225, 241, 254, 1) 67%,
+      rgba(225, 241, 254, 0) 100%
+    );
+  }
+}

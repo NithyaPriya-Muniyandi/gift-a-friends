@@ -1,0 +1,13 @@
+---
+---
+<footer class="bg-gray-800 px-3 text-xs md:text-sm text-white text-center py-2 whitespace-nowrap">
+    <div class="container mx-auto">
+      © <span id="current-year"></span>. Texila American University. All Rights Reserved
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let currentYear = new Date().getFullYear();
+      document.getElementById('current-year').textContent = currentYear;
+    });
+  </script>
