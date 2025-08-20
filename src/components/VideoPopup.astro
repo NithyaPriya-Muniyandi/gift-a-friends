@@ -1,0 +1,66 @@
+---
+import { Image } from "astro:assets";
+import vImg from "./../assets/t-video-bg.webp";
+import hVideo from "./../assets/helene.mp4";
+---
+
+<div class="video-popup-container">
+  <button id="openVideoBtn" class="bg-transparent border-0 focus:outline-none transform transition-transform duration-300 hover:scale-105">
+    <Image src={vImg} alt="Video Thumbnail" class="rounded-lg w-full max-w-xs mx-auto" />
+  </button>
+</div>
+
+<!-- Overlay background -->
+<div id="videoPopupOverlay" class="fixed bg-black bg-opacity-50 z-40 hidden"></div>
+<div id="videoPopupModal" class="fixed top-1/2 left-1/2 z-50 transform -translate-x-1/2 -translate-y-1/2 hidden w-full px-4 md:px-0 md:w-auto">
+  <div class="relative w-full md:max-w-3xl bg-white rounded-lg p-4 shadow-2xl">
+    <!-- Close Button -->
+    <button id="closeVideoBtn" class="absolute -top-8 right-0 text-black text-3xl font-bold z-10 hover:text-gray-300 transition-colors">
+      ×
+    </button>
+    
+    <!-- Video Player -->
+    <video id="popupVideo" controls class="w-full rounded-lg">
+      <source src={hVideo} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+
+
+<!-- Client-side Script -->
+<script client:load>
+  const openBtn = document.getElementById('openVideoBtn');
+  const closeBtn = document.getElementById('closeVideoBtn');
+  const overlay = document.getElementById('videoPopupOverlay');
+  const modal = document.getElementById('videoPopupModal');
+  const video = document.getElementById('popupVideo');
+
+  function openPopup() {
+    overlay?.classList.remove('hidden');
+    modal?.classList.remove('hidden');
+    video.currentTime = 0;
+    video.play();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePopup() {
+    overlay?.classList.add('hidden');
+    modal?.classList.add('hidden');
+    video.pause();
+    document.body.style.overflow = '';
+  }
+
+  openBtn?.addEventListener('click', openPopup);
+  closeBtn?.addEventListener('click', closePopup);
+
+  overlay?.addEventListener('click', closePopup);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal?.classList.contains('hidden')) {
+      closePopup();
+    }
+  });
+</script>
+

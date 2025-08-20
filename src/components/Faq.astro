@@ -1,0 +1,136 @@
+---
+// FAQ items data
+const faqItems = [
+  {
+    question: "Who’s ready to transform lives through our Master of Public Health?",
+    answer: "Elevate your career to new heights! Our Master of Public Health program transforms professionals into qualified health specialists."
+  },
+  {
+    question: "What Comes Next for Your Public Health Journey?",
+    answer: "Earning a PhD in Public Health opens up exciting career opportunities that combine meaningful impact with cutting-edge innovation and strong earning potential."
+  },
+  {
+    question: "What is the duration of the MPH program?",
+    answer: "The duration of our MPH program is two years."
+  },
+  {
+    question: "Can students explore adaptable payment options for their education?",
+    answer: "Certainly! Our dedicated student counsellors will provide detailed information on payment plans for each enrollment period."
+  },
+  {
+    question: "Are international students welcome at the university?",
+    answer: "We welcome international students with open arms."
+  },
+  {
+    question: "Is TAU Accredited and Recognized?",
+    answer: "Texila American University Guyana holds approval from the National Accreditation Council, operating under the Ministry of Education, guaranteeing the delivery of post-secondary education at the highest standards."
+  }
+];
+---
+
+<section class="faq-section py-8 md:py-16 px-4 md:px-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#121212]">
+      Frequently Asked Questions
+    </h1>
+    
+    <div class="faq-container space-y-4">
+      {faqItems.map((item, index) => (
+        <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden">
+  <button 
+    class="faq-question w-full text-left p-5 pr-12 font-medium text-sm relative flex items-center bg-[#2e7cac] text-white border border-[#bfd4ff] rounded-[10px]" 
+    aria-expanded="false"
+    aria-controls={`faq-answer-${index}`}
+  >
+    {item.question}
+    <svg 
+      class="faq-icon absolute right-5 transition-transform duration-200 ease-in-out w-5 h-5" 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+    >
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  </button>
+  <div 
+    id={`faq-answer-${index}`}
+    class="faq-answer overflow-hidden max-h-0 transition-all duration-200 ease-in-out"
+  >
+    <div class="p-5 text-gray-600">
+      {item.answer}
+    </div>
+  </div>
+</div>
+
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // JavaScript for the FAQ accordion functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const isExpanded = question.getAttribute('aria-expanded') === 'true';
+        const faqItem = question.closest('.faq-item');
+        const answer = faqItem.querySelector('.faq-answer');
+        const icon = question.querySelector('.faq-icon');
+        
+        // Toggle expanded state
+        question.setAttribute('aria-expanded', !isExpanded);
+        
+        // Toggle answer visibility with smooth animation
+        if (isExpanded) {
+          // Collapse
+          answer.style.maxHeight = '0';
+          icon.classList.remove('rotate-45');
+        } else {
+          // Expand
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          icon.classList.add('rotate-45');
+        }
+      });
+    });
+    
+    // Keyboard navigation
+    faqQuestions.forEach(question => {
+      question.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          question.click();
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .faq-item {
+    border: none !important;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .faq-item:hover {
+    border-color: rgba(209, 213, 219, 1);
+  }
+  
+  
+  .rotate-45 {
+    transform: rotate(45deg);
+  }
+  
+  /* Gradient text */
+  .faq-section h2 {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>

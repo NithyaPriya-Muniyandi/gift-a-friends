@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 import "../styles/global.css";
 ---
@@ -16,3 +17,40 @@ import "../styles/global.css";
     <slot />
   </body>
 </html>
+=======
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		 <link rel="icon" type="image/x-icon" href="gyicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content="Master's In Pubilc Health AB - Texila American University" />
+		<title>Master of Public Health - Texila American University</title>
+		 <link rel="preload" as="image" href="./../assets/ph-mobile.webp"/>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		overflow-x: hidden !important;
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+ <script>
+  window.onload = function() {
+    setTimeout(function() {
+      var script = document.createElement('script');
+      script.src = 'external.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    }, 4000); // 3 seconds delay
+  };
+</script>
+>>>>>>> f12bb2b244e194aa2616420d3d4f0566c352ba85

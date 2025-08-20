@@ -1,0 +1,21 @@
+---
+import TestimonialCarousel from './TestimonialCarousel.astro';
+import VideoPopup from './VideoPopup.astro';
+---
+
+<section class="bg-[#F5F5F5] py-8 md:py-16 relative overflow-hidden">
+  <!-- Background image wrapper -->
+  <div class="hidden lg:block absolute inset-0 z-0 bg-[url('./../assets/student.webp')] bg-no-repeat bg-left-top bg-contain pointer-events-none"></div>
+
+  <div class="relative z-10 container mx-auto px-4">
+    <div class="flex flex-wrap -mx-4">
+      <div class="w-full lg:w-3/12 px-4 hidden lg:block"></div>
+      <div class="w-full lg:w-6/12 px-4 relative z-10">
+        <TestimonialCarousel />
+      </div>
+      <div class="w-full lg:w-3/12 px-4 flex items-center justify-center mt-10 lg:mt-0">
+        <VideoPopup />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import ButtonArrow from '../assets/arrow.webp';
+import IconTop from '../assets/enjoy.webp';
+---
+
+<section class="px-4 md:px-20 py-2 bg-gradient-to-l from-transparent via-[#E1F1FE] to-transparent text-center">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center text-center md:text-left space-y-6 md:space-y-0 md:space-x-6">
+    
+    <div class="flex-shrink-0">
+      <Image src={IconTop} alt="Enjoy icon" class="w-24 md:w-28" />
+    </div>
+
+    <div>
+      <p class="text-gray-800 mt-1 text-base md:text-lg">
+       <strong>100% online classes</strong> Earn an internationally accredited degree, and attend classes on your schedule.
+      </p>
+    </div>
+      <div class="mt-4">
+        <a href="#apply" class="inline-flex items-center gap-2 bg-[#0D3B66] text-white px-5 py-3 rounded-lg shadow-md hover:bg-[#0b3357] transition">
+          Enroll today for early bird offers!
+          <Image src={ButtonArrow} alt="Arrow icon" class="w-4 h-4" />
+        </a>
+      </div>
+    
+
+  </div>
+</section>
